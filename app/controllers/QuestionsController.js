@@ -12,13 +12,17 @@ function _drawQuestions() {
 
     questions.forEach(question => htmlString += question.TriviaHTML)
 
-    setHTML('questions', _drawQuestions)
+    setHTML('questionCard', htmlString)
 
 }
 
 
 export class QuestionsController {
     constructor() {
+        console.log('questions controller loaded');
+        this.getQuestions()
+
+        AppState.on('questions', _drawQuestions)
 
     }
 
@@ -31,7 +35,15 @@ async getQuestions() {
         Pop.error(error)
         console.error(error);
     }
+    }
 
+    async waitForPromise() {
+        const message = await new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('running 3rd')
+            }, 3000,)
+        })
 
+        console.log(message)
     }
 }
