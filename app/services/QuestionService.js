@@ -18,4 +18,4 @@ class QuestionsService {
 
 
 
-export const questionsService = new questionsService()
+export const questionsService = new QuestionsService()
